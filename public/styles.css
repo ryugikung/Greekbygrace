@@ -16,3 +16,34 @@
 .boot-skeleton.wide{height:120px;margin:20px 0}
 @keyframes boot-shimmer{to{background-position-x:-200%}}
 @media(max-width:750px){.boot-shell{display:block}.boot-side{padding:12px}.boot-side .boot-skeleton{display:none}.boot-main{padding:24px}}
+
+
+/* V5: interaction and visual polish; honors user-selected palette */
+:root{--ease-out:cubic-bezier(.2,.75,.2,1);--focus-ring:color-mix(in srgb,var(--primary) 44%,transparent)}
+html{scroll-behavior:smooth}body{line-height:1.5;-webkit-font-smoothing:antialiased}
+.main{animation:page-arrive .28s var(--ease-out) both}.main>.panel,.main>.cards,.main>.mini-grid{animation:section-arrive .34s var(--ease-out) both}
+.main>.panel:nth-child(2){animation-delay:35ms}.main>.panel:nth-child(3){animation-delay:65ms}
+@keyframes page-arrive{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@keyframes section-arrive{from{opacity:.7;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.card,.panel,.dialog,.auth-box{box-shadow:0 5px 22px color-mix(in srgb,var(--ink) 5%,transparent);transition:border-color .2s,box-shadow .22s,background-color .2s}
+.card:hover{border-color:color-mix(in srgb,var(--primary) 25%,var(--border));box-shadow:0 9px 28px color-mix(in srgb,var(--ink) 8%,transparent)}
+.btn,.nav button,.mobile-nav button,.palette-choice{transition:background-color .17s,color .17s,border-color .17s,box-shadow .17s,transform .17s var(--ease-out)}
+.btn:hover:not(:disabled){filter:brightness(1.035);transform:translateY(-1px);box-shadow:0 4px 12px color-mix(in srgb,var(--primary) 16%,transparent)}
+.btn:active:not(:disabled){transform:translateY(0);box-shadow:none}
+.nav button:hover,.mobile-nav button:hover{transform:translateX(2px)}
+.nav button.active{box-shadow:inset 3px 0 var(--primary)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+input,select,textarea{transition:border-color .18s,box-shadow .18s,background-color .18s}
+input:hover,select:hover,textarea:hover{border-color:color-mix(in srgb,var(--primary) 34%,var(--border))}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 10%,transparent);outline:none}
+.table-wrap{border-radius:12px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+tbody tr{transition:background-color .16s}tbody tr:hover{background:color-mix(in srgb,var(--primary) 4%,var(--card))}
+th{position:sticky;top:0;background:var(--card);z-index:1;white-space:nowrap}
+.dialog-back{animation:overlay-in .2s ease-out both}.dialog{animation:dialog-in .24s var(--ease-out) both;box-shadow:0 25px 90px color-mix(in srgb,var(--ink) 26%,transparent)}
+@keyframes overlay-in{from{opacity:0}to{opacity:1}}@keyframes dialog-in{from{opacity:.6;transform:translateY(13px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.toast{background:var(--ink);color:var(--card);border:1px solid var(--border);box-shadow:0 12px 35px color-mix(in srgb,var(--ink) 20%,transparent);animation:toast-in .22s var(--ease-out) both}
+@keyframes toast-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.btn.is-saving{opacity:.72;cursor:progress;pointer-events:none}.btn.is-saving::after{content:'';display:inline-block;width:11px;height:11px;margin-left:9px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .65s linear infinite;vertical-align:middle}@keyframes spin{to{transform:rotate(360deg)}}
+.palette-choice:hover{border-color:var(--primary);transform:translateY(-2px)}
+@media(max-width:680px){.dialog-back{padding:10px;align-items:end}.dialog{max-height:min(90dvh,850px);border-radius:22px 22px 12px 12px;padding:20px 16px max(18px,env(safe-area-inset-bottom))}.mobile-nav{padding-bottom:max(8px,env(safe-area-inset-bottom))}.toast{left:12px;right:12px;bottom:calc(76px + env(safe-area-inset-bottom));max-width:none}.main{padding-bottom:calc(96px + env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
