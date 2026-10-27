@@ -1,29 +1,30 @@
-# Yogurt Studio V4 — cumulative performance update
+# Yogurt Studio V6 — responsive mobile + smooth overlays
 
-This package contains all V3 features and the V4 performance changes. Replace the existing GitHub repository files with the ZIP contents; keep Vercel output directory set to `public`.
+Complete cumulative replacement of V5, preserving V1–V5 website features and existing Supabase data.
+
+## Main fixes
+
+- **Dialogs are mounted separately from the main dashboard.** Opening an order, product, or payment dialog no longer redraws the whole page or retriggers background entrance animations.
+- **Lighter backdrop.** Removed costly `backdrop-filter` from dialogs (particularly problematic on mobile); a palette-aware tint remains.
+- **Smooth overlay transitions.** Desktop modals fade and move subtly; phones use an animated bottom sheet with scrollable fields and visible footer buttons. Animated dismissal works with Cancel, close button, Escape, and tapping outside the dialog.
+- **Responsive navigation.** On phones, fixed Dashboard / Orders / Products / Reports / More bottom navigation and a drawer for all ten pages, plus a compact branded top bar.
+- **Responsive records.** On narrow screens, table records display as vertically stacked, labelled cards rather than requiring sideways scrolling.
+- **Touch/mobile usability.** Safe-area spacing for modern phones, larger tap targets, input font sizing to avoid iOS auto-zoom, improved spacing for cards, dashboard and charts.
+- Honors your saved color palettes and light/dark mode. Respects `prefers-reduced-motion`.
+
+## Deploy
+
+1. Upload **all extracted files** to the existing GitHub repository's `main` branch, retaining `public/`, `sql/` and `README.md` structure.
+2. Vercel settings remain: Framework **Other**; Output directory **`public`**; no build command.
+3. Redeploy and hard-refresh or fully close/reopen the mobile tab.
+4. Test the product editor, order editor, payment dialog, mobile menu, tab switching, and form saves.
 
 ## Database
-No new SQL migration is required **if V1–V3 migrations were already run**. Do not reset Supabase. The `sql/` folder retains previous scripts for reference or fresh installations.
 
-## V4 changes
-- Renders a branded loading shell immediately after session initialization, instead of waiting on a blank page.
-- Saves now refresh only the tables affected by the operation rather than all 12 tables.
-- Database loads report explicit failures with a retry button.
-- Preserves existing product, order, cost, reporting, appearance, and language features.
+**No new SQL migration**. Keep your existing Supabase project. Do not reset it. The included SQL files are retained for fresh-install reference only.
 
 ## Known limitations
-- First authenticated visit still fetches all tables for compatibility with existing screens. This may be slow with very large databases; future work should implement server-side pagination and query-specific report aggregation.
-- Saving an order may require separate requests for order items and payments; no optimistic updates yet.
-- Remote ESM dependency remains; bundling requires a dedicated build toolchain.
-- Not yet tested against your live Supabase database.
 
-
-## V5 — visual and UX polish
-
-- Consistent palette-aware cards, dialogs, inputs, table hover states and toasts.
-- Smooth restrained transitions, modal entrance, and navigation feedback.
-- Save buttons show an in-progress state and block accidental duplicate submissions.
-- Escape closes open dialogs; navigation resets scroll to the top.
-- Mobile modal and toast spacing improved; respects reduced-motion accessibility preferences.
-- No database changes: use the same Supabase project and existing SQL migrations.
-- This is a cumulative V4-based package. Browser/Supabase integration testing is still recommended.
+- This is a UI and mobile compatibility release, not a database-performance upgrade. Existing data flows and report limitations are unchanged.
+- Multi-page application content is still rendered client-side. Initial authenticated loading still fetches all store tables.
+- For live stores, test against Supabase using a nonproduction record before relying on business operations.
