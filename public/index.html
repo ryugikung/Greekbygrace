@@ -1,1 +1,37 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e9ede3"><title>Yogurt Studio · Management</title><link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/icon-180.png"><link rel="manifest" href="/site.webmanifest"><link rel="stylesheet" href="/styles.css"></head><body><div id="app"><div class="loading">Loading Yogurt Studio…</div></div><script type="module" src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8f4">
+<title>Yogurt Studio · Management</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<!-- The first paint has critical CSS inline: never display raw loading text. -->
+<style>
+:root{--base-primary:#56745a;--base-sidebar:#ecf0e7;--base-page:#f7f8f4;--base-card:#fff;--base-ink:#303a31;--primary:var(--base-primary);--sidebar:var(--base-sidebar);--page:var(--base-page);--card:var(--base-card);--ink:var(--base-ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink)}
+*,*::before,*::after{box-sizing:border-box}html,body{margin:0;min-width:0;min-height:100%;background:var(--page);color:var(--ink)}
+.boot-shell{min-height:100vh;display:grid;grid-template-columns:240px minmax(0,1fr);background:var(--page)}.boot-side{background:var(--sidebar);padding:30px 22px}.boot-brand{display:flex;align-items:center;gap:12px;font-weight:750;font-size:20px}.boot-brand img{width:44px;height:44px;object-fit:contain}.boot-main{padding:clamp(28px,5vw,68px)}.boot-main h1{font-size:clamp(25px,3.3vw,42px);margin:14px 0 4px}.boot-main p{opacity:.6}.boot-eyebrow{font-weight:700;letter-spacing:.12em;font-size:11px;opacity:.58}.boot-skeleton{height:42px;border-radius:13px;margin-top:22px;background:linear-gradient(100deg,color-mix(in srgb,var(--primary) 8%,var(--card)),var(--card),color-mix(in srgb,var(--primary) 8%,var(--card)));background-size:200% 100%;animation:shimmer 2s linear infinite}.boot-side .boot-skeleton{height:35px;margin-top:18px;opacity:.65}.boot-skeleton.wide{height:115px;max-width:1040px}.boot-placeholder{margin-top:40px}@keyframes shimmer{to{background-position-x:-200%}}
+@media(max-width:760px){.boot-shell{grid-template-columns:1fr}.boot-side{padding:16px 20px}.boot-side .boot-skeleton{display:none}.boot-main{padding:34px 20px}.boot-skeleton.wide{height:96px}}
+@media(prefers-reduced-motion:reduce){.boot-skeleton{animation:none}}
+</style>
+<script>
+// Apply previously saved page and sidebar color BEFORE the browser paints.
+try {const p={pistachio:['#ecf0e7','#f7f8f4'],berry:['#f4e6e9','#fbf7f8'],blueberry:['#e9ecf5','#f8f9fc'],peach:['#f8e9e2','#fff9f5'],matcha:['#e8eddd','#f6f8f0'],coffee:['#eee6df','#faf7f3'],neutral:['#edf0f0','#f8f9f9'],strawberry:['#f7e8ec','#fff8fa'],mint:['#e1f0eb','#f6faf8'],lavender:['#eeeafa','#faf9fe']};const c=JSON.parse(localStorage.getItem('yg_custom')||'null');const q=c||[null,...(p[localStorage.getItem('yg_palette')||'pistachio']||p.pistachio)];if(q[1])document.documentElement.style.setProperty('--base-sidebar',q[1]);if(q[2])document.documentElement.style.setProperty('--base-page',q[2]);const mode=localStorage.getItem('yg_mode')||'light';if(mode==='dark'||(mode==='auto'&&matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.style.setProperty('--page','#171e1b');document.documentElement.style.setProperty('--sidebar','#202b26');document.documentElement.style.setProperty('--card','#2a352e');document.documentElement.style.setProperty('--ink','#f0f4ed')}}catch(e){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Kanit:wght@400;500;600;700&family=Mali:wght@400;500;600;700&family=Mitr:wght@400;500;600;700&family=Pridi:wght@400;500;600;700&family=Prompt:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="/styles.css?v=8">
+</head>
+<body>
+<div id="app"><div class="boot-shell" role="status" aria-label="Opening Yogurt Studio"><aside class="boot-side"><div class="boot-brand"><img src="/mascot-transparent.png" alt=""><b>Yogurt Studio</b></div><div class="boot-skeleton"></div><div class="boot-skeleton"></div><div class="boot-skeleton"></div></aside><main class="boot-main"><div class="boot-eyebrow">STORE MANAGEMENT</div><h1>Welcome back.</h1><p>Preparing your workspace</p><div class="boot-placeholder"><div class="boot-skeleton wide"></div><div class="boot-skeleton wide"></div></div></main></div></div>
+<div id="floating-layer" aria-label="Floating store decorations"></div>
+<noscript><p style="padding:30px">Yogurt Studio requires JavaScript. Enable it and reload.</p></noscript>
+<script type="module" src="/app.js?v=8"></script>
+<script>
+// A failed module import should never leave an eternal, unlabelled skeleton.
+setTimeout(()=>{const app=document.getElementById('app');if(app&&app.querySelector('.boot-shell')){const p=app.querySelector('.boot-main p');if(p)p.textContent='The connection is taking longer than expected. Check your internet connection and reload.';if(!app.querySelector('.boot-retry')){const b=document.createElement('button');b.className='boot-retry';b.textContent='Reload website';b.style.cssText='margin-top:24px;padding:12px 20px;background:#56745a;color:#fff;border:0;border-radius:12px;cursor:pointer';b.onclick=()=>location.reload();app.querySelector('.boot-main').append(b)}}},12000)
+</script>
+</body></html>
